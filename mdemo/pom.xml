@@ -41,13 +41,48 @@
 
 	</properties>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>jdk.tools</groupId>
 			<artifactId>jdk.tools</artifactId>
 			<version>1.7</version>
 			<scope>system</scope>
 			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency> -->
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>jstl</artifactId>
+        	<version>${jstl.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax.servlet.jsp</groupId>
+        	<artifactId>jsp-api</artifactId>
+        	<version>${jspapi.version}</version>
+        </dependency>
+        <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--引入Javaee6开始-->
+        <!-- <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+        </dependency> -->
+		<!-- <dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency> -->
+		
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -71,7 +106,7 @@
 
 
 		<!-- start jersey dependency -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-multipart</artifactId>
 			<version>${jersey.version}</version>
@@ -86,8 +121,8 @@
 					<artifactId>javassist</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
+		</dependency> -->
+		<!-- <dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
 			<version>${rs-api.version}</version>
@@ -102,7 +137,7 @@
 			<artifactId>jersey-spring3</artifactId>
 			<version>${jersey.version}</version>
 			<exclusions>
-				<exclusion><!--排除jersey自带的spring版本，便于自己控制 -->
+				<exclusion>排除jersey自带的spring版本，便于自己控制
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-aop</artifactId>
 				</exclusion>
@@ -123,7 +158,7 @@
 					<groupId>org.springframework</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
 		<!-- end jersey dependency -->
 
 
@@ -243,6 +278,7 @@
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
+		<!-- 导入Mysql数据库链接jar包 -->  
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -261,11 +297,11 @@
 			<version>2.5.0</version>
 		</dependency>
 		<!-- end redis dependency -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>${httpapi.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- Json支持 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
@@ -276,6 +312,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<!-- 表示开发的时候引入，发布的时候不会加载此包 -->  
 			<scope>test</scope>
 		</dependency>
 		<!-- Shiro security -->
@@ -337,12 +374,12 @@
 		</dependency>
 		<!-- end -->
 		<!-- haeinsa -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>kr.co.vcnc.haeinsa</groupId>
 			<artifactId>haeinsa</artifactId>
 			<version>${haeinsa.version}</version>
 			<exclusions>
-				<!-- 排除低版本hbae和jersey 避免冲突 -->
+				排除低版本hbae和jersey 避免冲突
 				<exclusion>
 					<groupId>org.apache.hbase</groupId>
 					<artifactId>hbase</artifactId>
@@ -360,10 +397,10 @@
 					<artifactId>jersey-json</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
 		<!-- end haeinsa -->
 		<!-- hadoop start -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-auth</artifactId>
 			<version>${hadoop.version}</version>
@@ -412,8 +449,28 @@
 					<groupId>com.sun.jersey</groupId>
 					<artifactId>jersey-server</artifactId>
 				</exclusion>
+                <exclusion>  
+                    <artifactId>jetty</artifactId>  
+                    <groupId>org.mortbay.jetty</groupId>  
+                </exclusion>
+                <exclusion>
+		        	<groupId>javax.servlet</groupId>
+		        	<artifactId>jstl</artifactId>
+		        </exclusion>
+		        <exclusion>
+		        	<groupId>javax.servlet.jsp</groupId>
+		        	<artifactId>jsp-api</artifactId>
+		        </exclusion>
+		        <exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+				</exclusion> 
 			</exclusions>
-		</dependency>
+		</dependency> -->
 		<!-- hadoop end -->
 		<!-- hbase start -->
 		<!-- <dependency>
@@ -433,13 +490,13 @@
 			<artifactId>hbase-protocol</artifactId>
 			<version>${hbase.version}</version>
 			<classifier>hadoop2</classifier>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.gx.base</groupId>
 			<artifactId>crawler</artifactId>
 			<version>${crawlerbase.version}</version>
-		</dependency> -->
+		</dependency>
 
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -506,11 +563,11 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.8.0</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.chinanetcenter</groupId>
 			<artifactId>ws-sdk</artifactId>
 			<version>1.6.4</version>
-		</dependency> -->
+		</dependency>
 
 		<!-- <dependency> -->
 		<!-- <groupId>com.gaoxin</groupId> -->
@@ -519,7 +576,7 @@
 		<!-- <classifier>jdk15</classifier> -->
 		<!-- </dependency> -->
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.5</version>
@@ -535,7 +592,7 @@
 			<groupId>com.spreada</groupId>
 			<artifactId>ZHConverter</artifactId>
 			<version>1.0.0</version>
-		</dependency> -->
+		</dependency>
 
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -556,13 +613,6 @@
 			<version>1.0.6</version>
 		</dependency> -->
 
-
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1.3-b06</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -591,17 +641,17 @@
 			<version>2.8.2</version>
 		</dependency>
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>com</groupId>
 			<artifactId>lmax.disruptor</artifactId>
 			<version>3.1.1</version>
-		</dependency> -->
+		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.servlet</artifactId>
 			<version>3.0-b70</version>
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.github.stuxuhai/jpinyin -->
 		<dependency>
 			<groupId>com.github.stuxuhai</groupId>
@@ -610,13 +660,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- <dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.18.2-GA</version>
@@ -625,13 +668,13 @@
 			<groupId>com.gx.base</groupId>
 			<artifactId>moputils</artifactId>
 			<version>${moputils.version}</version>
-		</dependency> -->
+		</dependency>
 
 	</dependencies>
 
 	<!--多环境配置 -->
 	<profiles>
-		<!--本地开发环境 -->
+		<!--本地开发环境 开发环境是默认激活的（activeByDefault为true）-->
 		<profile>
 			<id>local</id>
 			<activation>
@@ -661,35 +704,24 @@
   	<build>  
         <defaultGoal>install</defaultGoal>  
         <plugins>  
-            <plugin>  
-                <groupId>org.mortbay.jetty</groupId>  
-                <artifactId>maven-jetty-plugin</artifactId>  
-                <version>6.1.26</version>  
-                <configuration>  
-                    <webAppConfig>  
-                        <contextPath>/</contextPath>  
-                        <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>  
-                    </webAppConfig>  
-                    <webDefaultXml>src/main/resources/webdefault.xml</webDefaultXml>  
-                </configuration>  
-            </plugin>  
-            <!-- <plugin>  
-                <artifactId>maven-compiler-plugin</artifactId>  
-                <version>2.5.1</version>  
-                <configuration>  
-                    <source>1.6</source>  
-                    <target>1.6</target>  
-                    <encoding>UTF-8</encoding>  
-                </configuration>  
-            </plugin>  
-            <plugin>  
-                <groupId>org.apache.maven.plugins</groupId>  
-                <version>2.5</version>  
-                <artifactId>maven-resources-plugin</artifactId>  
-                <configuration>  
-                    <encoding>UTF-8</encoding>  
-                </configuration>  
-            </plugin> -->
+        	<!-- jetty -->
+            <plugin>
+                  <groupId>org.eclipse.jetty</groupId>
+                  <artifactId>jetty-maven-plugin</artifactId>
+                  <version>9.2.8.v20150217</version>
+                <configuration>
+                    <webDefaultXml>src/main/resources/webdefault.xml</webDefaultXml>
+                    <webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <contextPath>/</contextPath>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8080</port>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+
             <!--解决项目每次导入的时候java compiler级别都是1.5 -->
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -727,7 +759,13 @@
 	<repositories>
 		<repository>
 			<id>GaoXin</id>
-			<url>http://172.18.7.244:8081/nexus/content/groups/public</url>
+			<url>http://172.18.252.1:9000/nexus/content/groups/public</url>
+			<releases>  
+                <enabled>true</enabled>  
+            </releases>  
+            <snapshots>  
+                <enabled>true</enabled>  
+            </snapshots>
 		</repository>
 	</repositories>
 </project>
